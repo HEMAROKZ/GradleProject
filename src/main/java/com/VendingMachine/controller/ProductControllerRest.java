@@ -68,9 +68,6 @@ public class ProductControllerRest {
         DenominationConfig denominationConfig = purchaseRequest.getDenominationConfig();
         int billingCounter = purchaseRequest.getBillingCounter();
         MultiplePurchaseInputDTO multiplePurchaseDTO = inventoryService.constructMultiplePurchaseDTO(purchaseDTO);
-
-        // Continue with the rest of your logic...
-
         List<PurchaseInputDTO> responseList = inventoryService.finalPurchaseRequest(
                 multiplePurchaseDTO.getProductIds(),
                 multiplePurchaseDTO.getQuantities(),
@@ -79,9 +76,6 @@ public class ProductControllerRest {
                 multiplePurchaseDTO.getNames()
         );
         Map<DenominationType, Integer> denominationMap = denominationConfig.getDenominationValues();
-
-      //  List<PurchaseInputDTO> responseList = inventoryService.finalPurchaseRequest(multiplePurchaseDTO.getProductIds(), multiplePurchaseDTO.getQuantities(), multiplePurchaseDTO.getPrices(), multiplePurchaseDTO.getCountsOfProduct(), multiplePurchaseDTO.getNames());
-//        List<PurchaseInputDTO> responseList = inventoryService.finalPurchaseRequest(multiplePurchaseInputDTO.getProductIds(), multiplePurchaseInputDTO.getQuantities(), multiplePurchaseInputDTO.getPrices(), multiplePurchaseInputDTO.getCountsOfProduct(), multiplePurchaseInputDTO.getNames());
 
         int totalCost = inventoryService.calculateTotalPrice(responseList);
         log.info("total cost of product" + totalCost);
