@@ -38,28 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-//
-//	@Override
-//	protected void configure(HttpSecurity httpSecurity) throws Exception {
-//		// We don't need CSRF for this example
-//		httpSecurity.csrf().disable()
-//				.authorizeRequests()
-//				.antMatchers("/authenticate","/login","/home","/product/**"," /Inventoryproduct/**","/purchasemultipleproductpage","/purchase-Inventryitem","/purchaseproductpage"," /purchaseproduct").permitAll() // Allow access to images without authentication
-//				.antMatchers("/getAllInventory","/delete/**", "/addinventoryitem", "/add-Inventryitem", "/update/user/**").authenticated()
-//				.and()
-//				.formLogin()
-//				.loginPage("/login") // Specify the custom login page URL
-//				.defaultSuccessUrl("/getAllInventory")
-//				.failureUrl("/login?error=true")
-//				.permitAll()
-//				.and()
-//				.apply(new JwtConfigurer(jwtRequestFilter));
-////
-////		// Add a fil ter to validate the tokens with every request
-////		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-//	}
-//
-//
+
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {

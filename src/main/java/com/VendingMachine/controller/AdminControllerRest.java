@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class AdminControllerRest {
     private final AdminServices adminServices;
-    private final InventoryService inventoryService;
 
     private static final Logger log = LoggerFactory.getLogger(InventoryService.class);
 
 
-    public AdminControllerRest(final AdminServices adminServices, final InventoryService inventoryService) {
+    public AdminControllerRest(final AdminServices adminServices) {
         this.adminServices = adminServices;
-        this.inventoryService = inventoryService;
     }
 
 

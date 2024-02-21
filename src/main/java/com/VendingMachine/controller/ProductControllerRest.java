@@ -3,30 +3,28 @@ package com.VendingMachine.controller;
 import com.VendingMachine.dto.InventoryDTO;
 import com.VendingMachine.dto.PurchaseInputDTO;
 import com.VendingMachine.dto.PurchaseResult;
-import com.VendingMachine.dto.controllerDTO.*;
+import com.VendingMachine.dto.controllerDTO.DenominationType;
+import com.VendingMachine.dto.controllerDTO.MultiplePurchaseInputDTO;
+import com.VendingMachine.dto.controllerDTO.PurchaseDTO;
+import com.VendingMachine.dto.controllerDTO.PurchaseRequest;
+import com.VendingMachine.model.Inventry;
 import com.VendingMachine.service.DenominationService;
 import com.VendingMachine.service.InventoryService;
 import com.VendingMachine.util.DenominationConfig;
-import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import com.VendingMachine.model.Inventry;
 import com.VendingMachine.util.FileUtility;
+import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin()

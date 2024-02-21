@@ -4,7 +4,6 @@ package com.VendingMachine.dto.controllerDTO;
 import com.VendingMachine.util.DenominationConfig;
 
 public class PurchaseRequest {
-   // private MultiplePurchaseDTO multiplePurchaseDTO;
 
     private DenominationConfig denominationConfig;
     private int billingCounter;
@@ -19,14 +18,7 @@ public class PurchaseRequest {
     public void setPurchaseDTO(PurchaseDTO purchaseDTO) {
         this.purchaseDTO = purchaseDTO;
     }
-//
-//    public MultiplePurchaseDTO getMultiplePurchaseDTO() {
-//        return multiplePurchaseDTO;
-//    }
-//
-//    public void setMultiplePurchaseDTO(MultiplePurchaseDTO multiplePurchaseDTO) {
-//        this.multiplePurchaseDTO = multiplePurchaseDTO;
-//    }
+
 
     public DenominationConfig getDenominationConfig() {
         return denominationConfig;

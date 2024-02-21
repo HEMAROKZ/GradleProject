@@ -89,7 +89,7 @@ public class InventoryDAOImp implements InventoryDAO {
     }
 
     @Override
-    public int save_orderDetails(final OrderLine orderLine) {
+    public void save_orderDetails(final OrderLine orderLine) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("order_id", orderLine.getOrder_id());
         paramSource.addValue("line_num", orderLine.getLine_num());
@@ -102,7 +102,6 @@ public class InventoryDAOImp implements InventoryDAO {
             log.info("Successful update");
         }
 
-        return update;
     }
     @Override
     public void createOrderLineMergedTable() {

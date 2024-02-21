@@ -1,6 +1,5 @@
 package com.VendingMachine.dto.controllerDTO;
 
-import com.VendingMachine.dto.InventoryDTO;
 
 import java.util.List;
 

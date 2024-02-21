@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 public  class Inventry  {
 
-    private     int productId;
+    private  int productId;
 
-    private   String name;
+    private  String name;
     private  int productPrice;
 
     private  int productInventoryCount;

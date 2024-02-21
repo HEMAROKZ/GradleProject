@@ -89,12 +89,12 @@ public class InventoryService {
     }
 
     public Inventry getOnlyInventryProductById(int productId) {
-try {
-    return repository.findById(productId).get(0);
+        try {
+            return repository.findById(productId).get(0);
 
-}catch (IndexOutOfBoundsException  |    ProductIdNotFoundException | NullPointerException e ){
-    throw new ProductIdNotFoundException("product id not found");
-}
+        }catch (IndexOutOfBoundsException  |    ProductIdNotFoundException | NullPointerException e ){
+            throw new ProductIdNotFoundException("product id not found");
+        }
     }
 
     ////////////////////////
@@ -247,42 +247,7 @@ try {
     public int productCostCalculation(final PurchaseInputDTO purchaseInputDTOList) {
         return purchaseInputDTOList.getPrice() * purchaseInputDTOList.getQuantity();
     }
-//
-//    public MultiplePurchaseInputDTO constructMultiplePurchaseDTO(PurchaseDTO purchaseDTO) {
-//        // Validate the existence of purchaseDTO
-//        if (purchaseDTO == null) {
-//            throw new ProductUnavialableException("no product Id or quantity details were provided");
-//        }
-//
-//        List<Integer> productIds = purchaseDTO.getProductId();
-//        List<Integer> quantities = purchaseDTO.getQuantity();
-//        log.info("productIds================ "+productIds);
-//        log.info("quantities================ "+quantities);
-//
-//        // Validate the existence of productIds and quantities
-//        if (productIds == null || quantities == null || productIds.size() != quantities.size()) {
-//throw new ProductUnavialableException("INVALID product Id or quantity details were provided");
-//        }
-//
-//        // Initialize lists to store data for MultiplePurchaseDTO
-//        List<Integer> productPrices = new ArrayList<>();
-//        List<Integer> countsOfProduct = new ArrayList<>();
-//        List<String> names = new ArrayList<>();
-//
-//        // Fetch additional data for each productId from the inventoryService
-//        for (int i = 0; i < productIds.size(); i++) {
-//            int productId = productIds.get(i);
-//            log.info("productId inside loop ===== "+productId);
-//            int quantity = quantities.get(i);
-//            Inventry inventoryDTO = repository.findById(productId).get(0);
-//
-//            // Populate lists with additional data
-//            productPrices.add(inventoryDTO.getProductPrice());
-//            countsOfProduct.add(inventoryDTO.getProductInventoryCount());
-//            names.add(inventoryDTO.getName());
-//        }
-//        return new MultiplePurchaseInputDTO(productIds,quantities,productPrices,countsOfProduct,names);
-//    }
+
 
     public MultiplePurchaseInputDTO constructMultiplePurchaseDTO(PurchaseDTO purchaseDTO) {
         // Validate the existence of purchaseDTO

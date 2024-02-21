@@ -27,8 +27,7 @@ public class InventoryDTO implements Serializable {
         this.productInventoryCount = inventoryDTOBuilder.productInventoryCount;
     }
 
-//    public InventoryDTO() {
-//    }
+
 
     public static InventoryDTOBuilder builder(){
         return new InventoryDTOBuilder();

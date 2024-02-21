@@ -19,8 +19,11 @@ public interface InventoryDAO {
     int update(Inventry e);
 
     void updatedStock(int productId, int productInventryCount) ;
-    int save_orderDetails( OrderLine orderLine);
+
+    void save_orderDetails(OrderLine orderLine);
+
     void deleteRowsWithOrderIdZero();
+
     void mergeOrderLineRows();
 
     void createOrderLineMergedTable();
