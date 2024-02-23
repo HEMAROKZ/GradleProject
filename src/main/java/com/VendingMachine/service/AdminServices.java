@@ -6,7 +6,6 @@ import com.VendingMachine.customeexception.ProductUnavialableException;
 import com.VendingMachine.dao.InitialBalanceDAO;
 import com.VendingMachine.dao.InitialBalanceDAOImp;
 import com.VendingMachine.dao.InventoryDAO;
-import com.VendingMachine.dao.InventoryDAOImp;
 import com.VendingMachine.dto.InventoryDTO;
 import com.VendingMachine.model.InitialBalanceAndPurchaseHistory;
 import com.VendingMachine.model.Inventry;
@@ -22,13 +21,13 @@ import java.util.stream.Collectors;
 public class AdminServices {
 
 
-    public InventoryDAOImp repository;
+    public InventoryDAO repository;
     public InitialBalanceDAO initialBalanceDAOImp;
 
     private static final Logger log = LoggerFactory.getLogger(AdminServices.class);
 
     @Autowired
-    public AdminServices(InventoryDAOImp repository, InitialBalanceDAOImp initialBalanceDAOImp) {
+    public AdminServices(InventoryDAO repository, InitialBalanceDAO initialBalanceDAOImp) {
         this.repository = repository;
         this.initialBalanceDAOImp = initialBalanceDAOImp;
     }

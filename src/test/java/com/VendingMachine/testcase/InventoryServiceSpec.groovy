@@ -1,5 +1,5 @@
 import com.VendingMachine.customeexception.ProductIdNotFoundException
-import com.VendingMachine.dao.InventoryDAOImp
+import com.VendingMachine.dao.InventoryDAO
 import com.VendingMachine.dto.controllerDTO.MultiplePurchaseInputDTO
 import com.VendingMachine.dto.controllerDTO.PurchaseDTO
 import com.VendingMachine.model.Inventry
@@ -10,9 +10,9 @@ import spock.lang.Subject
 class InventoryServiceSpec extends Specification {
 
     @Subject
-    InventoryService inventoryService = new InventoryService()
+    InventoryService inventoryService = new InventoryService( )
 
-    def mockRepository = Mock(InventoryDAOImp)
+    def mockRepository = Mock(InventoryDAO)
 
     def setup() {
         // TO Initialize the mock repository in the service

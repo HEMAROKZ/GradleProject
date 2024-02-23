@@ -30,27 +30,21 @@ import java.util.stream.IntStream;
 @Service
 public class InventoryService {
 
-    public InventoryDAOImp repository;
+    public InventoryDAO repository;
     public  InitialBalanceDAO initialBalanceDAOImp;
     private  DenominationService denominationService;
 
 
     private static final Logger log = LoggerFactory.getLogger(InventoryService.class);
 @Autowired
-    public InventoryService(InventoryDAOImp repository, InitialBalanceDAO initialBalanceDAOImp, DenominationService denominationService) {
+    public InventoryService(InventoryDAO repository, InitialBalanceDAO initialBalanceDAOImp, DenominationService denominationService) {
         this.repository = repository;
         this.initialBalanceDAOImp = initialBalanceDAOImp;
         this.denominationService = denominationService;
     }
 
-    public InventoryService() {
-
-    }
-
-
+public InventoryService(){}
     ///////////////////////////////////// here used constructor injection instead of autowired injection
-
-
     public List<InventoryDTO> getListOfAllInventory() {
         return allProductToUserInventory(repository.findAll());
     }
@@ -80,7 +74,7 @@ public class InventoryService {
     }
 //////////////////////////////////////////////////////
     public Inventry getInventryProductById(int productId) {
-        if (repository.findById(productId).isEmpty()) {  ///check this  for null pointer exception
+        if (repository.findById(productId).isEmpty()) {
             throw new ProductIdNotFoundException("invalid product id given in url ....!!!!");
         } else if (repository.findById(productId).get(0).getProductInventoryCount() < 1) {
             throw new ProductUnavialableException(repository.findById(productId).get(0).getName() + " is Out of Stock..!!");
@@ -101,18 +95,14 @@ public class InventoryService {
 
 //will return individualCost for the product that we opt for purchase
     public PurchaseResult multiplePurchaseProduct(final List<PurchaseInputDTO> purchaseInputDTO, int totalCost, Map<DenominationType, Integer> inputDenominationMap, int billingCounter) {
-
         var change=0;
-
         var inputAmount = denominationService.totalDenominationAmount(inputDenominationMap, totalCost);
         var vendingMachineBalance = initialBalanceDAOImp.getChange().getVendingMachineBalance();
 
         if(inputAmount>=totalCost ){
             change = inputAmount - totalCost;
         }
-
-        else
-        {
+        else {
             throw new InsufficientInputCashException("total denomination value is less than the total cost of the product you r trying to purchase");
         }
 
@@ -138,10 +128,7 @@ public class InventoryService {
 
         List<Map<String, Object>> resultList = new ArrayList<>();
         int transactionId = TransactionIdGenerator.generateTransactionId();
-      //  StringBuilder productIdsBuilder = new StringBuilder();
-        /////////////
         var line_numberCount=0;
-        ///////////////
         for (PurchaseInputDTO purchaseInputDTOList : purchaseInputDTO) {
             var productId = purchaseInputDTOList.getProductId();
             var price = purchaseInputDTOList.getPrice();
@@ -164,19 +151,14 @@ public class InventoryService {
         log.info("resultlist ================================" +resultList);
         //Create table order_line_merged if it doesn't exist
        repository. createOrderLineMergedTable();
-
         // Merge rows in order_line and insert into order_line_merged
         repository.mergeOrderLineRows();
-
         //  Delete rows with order_id zero if they exist
         repository.deleteRowsWithOrderIdZero();
 
         InitialBalanceAndPurchaseHistory currentTransaction = new InitialBalanceAndPurchaseHistory(0, transactionId,  LocalDateTime.now(), inputAmount, change, newInitialBalance);
-//        OrderLine orderLine=new OrderLine(transactionId,billingCounter, productIdsBuilder);
         initialBalanceDAOImp.saveTransaction(currentTransaction, inputAmount);
-        // Update denomination counts in the database
         denominationService.updateDenominationCounts(denominationMap); ////////working on this method
-//         repository.save_orderDetails(orderLine);
         return new PurchaseResult(change, denominationMap, resultList);
     }
 

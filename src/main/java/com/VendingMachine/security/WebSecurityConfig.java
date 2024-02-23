@@ -43,11 +43,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
-		httpSecurity.csrf().disable()
+		httpSecurity.csrf().disable().authorizeRequests()
 				// dont authenticate this particular request
-				.authorizeRequests().antMatchers("/authenticate","/login","/home","/product/**"," /Inventoryproduct/**","/purchasemultipleproductpage","/purchase-Inventryitem","/purchaseproductpage"," /purchaseproduct").permitAll(). // Allow access to images without authentication
+				.antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
+				.antMatchers("/authenticate","/login","/home","/product/**"," /Inventoryproduct/**","/purchasemultipleproductpage","/purchase-Inventryitem","/purchaseproductpage"," /purchaseproduct","/swagger-ui/*").permitAll() // Allow access to images without authentication
 				// all other requests need to be authenticated
-						anyRequest().authenticated()
+				.anyRequest().authenticated()
 				.and()
 				.formLogin()
 				.loginPage("/login") // Specify the custom login page URL

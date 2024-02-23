@@ -1,28 +1,27 @@
 
+
 import com.VendingMachine.customeexception.ProductAlreadyExist
 import com.VendingMachine.customeexception.ProductIdNotFoundException
 import com.VendingMachine.customeexception.ProductUnavialableException
-import com.VendingMachine.dao.InitialBalanceDAOImp
-import com.VendingMachine.dao.InventoryDAOImp
+import com.VendingMachine.dao.InitialBalanceDAO
+import com.VendingMachine.dao.InventoryDAO
 import com.VendingMachine.dto.InventoryDTO
 import com.VendingMachine.model.InitialBalanceAndPurchaseHistory
 import com.VendingMachine.model.Inventry
 import com.VendingMachine.service.AdminServices
-import org.mockito.Mock
 import spock.lang.Specification
 import spock.lang.Subject
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime
 
-@Subject(AdminServices)
 class AdminSpec extends Specification {
 
-    @Mock
+    @Subject
     AdminServices adminServices = new AdminServices()
 
-    def mockInventoryRepository = Mock(InventoryDAOImp)
+    def mockInventoryRepository = Mock(InventoryDAO)
 
-    def mockInitialBalRepository = Mock(InitialBalanceDAOImp)
+    def mockInitialBalRepository = Mock(InitialBalanceDAO)
 
 
 
@@ -36,7 +35,7 @@ class AdminSpec extends Specification {
 
     def "deleteProductById should return 1 for a valid product ID"() {
         given:
-        int productId = 1
+        def productId = 1
 
         // Mocking the repository
         mockInventoryRepository. findById(1) >> [new Inventry(1, "Product A", 10, 25)]
@@ -45,7 +44,7 @@ class AdminSpec extends Specification {
 
 
         when:
-        int result = adminServices.deleteProductById(productId)
+        def result = adminServices.deleteProductById(productId)
 
         then:
         result == 1
@@ -56,13 +55,13 @@ class AdminSpec extends Specification {
 
     def "saveInventory should save new inventory if product ID is valid and not already in the inventory"() {
         given:
-        InventoryDTO inventoryDTO = InventoryDTO.builder()
+        def inventoryDTO = InventoryDTO.builder()
                 .withProductId(1)
                 .withName("frooti")
                 .withProductPrice(23)
                 .withProductInventoryCount(11)
                 .build()
-        println (inventoryDTO)
+       // println (inventoryDTO)
         // Mocking the repository behavior for an empty existing inventory
         mockInventoryRepository .findAll() >> []
 
@@ -80,7 +79,7 @@ class AdminSpec extends Specification {
 
     def "saveInventory should throw ProductAlreadyExist if product ID already exists in the inventory"() {
         given:
-        InventoryDTO inventoryDTO =  InventoryDTO.builder().withProductId(1)
+        def inventoryDTO =  InventoryDTO.builder().withProductId(1)
                 .withName("frooti")
                 .withProductPrice(23)
                 .withProductInventoryCount(11)
@@ -97,7 +96,7 @@ class AdminSpec extends Specification {
 
     def "saveInventory should throw ProductIdNotFoundException if product ID is 0"() {
         given:
-        InventoryDTO inventoryDTO = InventoryDTO.builder().withProductId(0)
+        def inventoryDTO = InventoryDTO.builder().withProductId(0)
                 .withName("frooti")
                 .withProductPrice(23)
                 .withProductInventoryCount(11)
@@ -113,7 +112,7 @@ class AdminSpec extends Specification {
 
     def "updateInventory should update inventory if product ID exists"() {
         given:
-        Inventry inventory = new Inventry(productId: 1, name: "Product A", productPrice: 10, productInventoryCount: 25)
+        def inventory = new Inventry(productId: 1, name: "Product A", productPrice: 10, productInventoryCount: 25)
 
         // Mocking the repository behavior for an  inventory populated above
         mockInventoryRepository.findAll() >> [inventory]

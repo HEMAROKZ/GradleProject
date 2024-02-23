@@ -19,7 +19,6 @@ public class PurchaseRequest {
         this.purchaseDTO = purchaseDTO;
     }
 
-
     public DenominationConfig getDenominationConfig() {
         return denominationConfig;
     }

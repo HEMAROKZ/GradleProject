@@ -18,7 +18,7 @@ import java.util.Map;
 @Service
 public class DenominationService {
 
-    private final DenominationDAO denominationRepository;
+    public  DenominationDAO denominationRepository;
     private static final Logger log = LoggerFactory.getLogger(InventoryService.class);
 
     @Autowired
@@ -26,6 +26,7 @@ public class DenominationService {
         this.denominationRepository = denominationRepository;
     }
 
+    public DenominationService(){}
     final void updateDenominationCounts(Map<Integer, Integer> denominationMap) {
         for (Map.Entry<Integer, Integer> entry : denominationMap.entrySet()) {
             int denominationValue = entry.getKey();
@@ -49,8 +50,9 @@ public class DenominationService {
         }
         return null;
     }
+/////////////////////////////////THIS ONE must change again private after testing
 
-    private void updateDenominationCounts(final int count, final DenominationType denominationType) {
+    public void updateDenominationCounts(final int count, final DenominationType denominationType) {
         // Fetch the existing denomination from the database
         Denomination existingDenomination = denominationRepository.getDenominationByDenominationType(denominationType);
         // Update the count for the existing denomination
@@ -83,7 +85,7 @@ public class DenominationService {
     }
 
 
-    //   ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////
     private boolean isDenominationSufficient(final Map<DenominationType, Integer> denominationMap, final double totalPrice) {
         double totalDenominationAmount = 0;
 
@@ -118,6 +120,7 @@ public class DenominationService {
         for (Denomination denomination : denominations) {
             customDenominations.put(denomination.getDenominationType().getValue(), denomination.getCount());
         }
+        log.info(customDenominations.values() +"customDenominations");
         return customDenominations;
     }
 
@@ -154,7 +157,6 @@ public class DenominationService {
                 }
             }
         }
-
         return false;
     }
 
