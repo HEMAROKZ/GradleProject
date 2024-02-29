@@ -50,7 +50,8 @@ Number Of Quantity Purchased: 1
 }
 
 
+## TESTING
 
+* written test case using Spock  and groovy unit testcase for the methods in service layer mocking the DAO layer with an expected result.
 
-
-Vending machine simulation with both front end and  rest API endpoints returns response in JSON format. project consist of  spock and groovy unit testcase for the methods in service layer
+Vending machine simulation with both front end and  rest API endpoints returns response in JSON format. 
