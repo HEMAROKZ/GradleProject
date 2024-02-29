@@ -76,7 +76,7 @@ class InventoryServiceSpec extends Specification {
         try {
             result = inventoryService.getOnlyInventryProductById(12)
         } catch (ProductIdNotFoundException  e) {
-            result = e.message
+                result = e.message
         }
 
 

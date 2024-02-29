@@ -1,0 +1,16 @@
+Date and Time: 2024-02-27 16:24:19
+
+Total Change: 10.0 Rupees
+
+Denominations:
+10 Rupees: 1 notes/coins
+
+Details for Each Product:
+Product Name: STRING
+Product Price: 32 Rupees
+Number Of Quantity Purchased: 1
+
+Product Name: jelly
+Product Price: 38 Rupees
+Number Of Quantity Purchased: 1
+

@@ -9,6 +9,8 @@ import com.VendingMachine.dto.InventoryDTO
 import com.VendingMachine.model.InitialBalanceAndPurchaseHistory
 import com.VendingMachine.model.Inventry
 import com.VendingMachine.service.AdminServices
+import org.springframework.web.client.RestTemplate
+import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Subject
 

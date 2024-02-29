@@ -31,8 +31,8 @@ public class AdminControllerRest {
 
     @PutMapping("/productsRest")
     @Operation(summary = "ADMIN PROCESS--Update  Inventory item ")
-    public String updateInventory(@RequestBody Inventry e) {
-        return adminServices.updateInventory(e)+" Product (s) updated successfully";
+    public ResponseEntity<String> updateInventory(@RequestBody Inventry e) {
+        return ResponseEntity.ok(adminServices.updateInventory(e)+" Product (s) updated successfully")  ;
     }
 
     @DeleteMapping("/deleteRest/{id}")

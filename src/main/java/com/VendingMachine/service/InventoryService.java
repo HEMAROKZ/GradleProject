@@ -36,7 +36,6 @@ public class InventoryService {
 
 
     private static final Logger log = LoggerFactory.getLogger(InventoryService.class);
-@Autowired
     public InventoryService(InventoryDAO repository, InitialBalanceDAO initialBalanceDAOImp, DenominationService denominationService) {
         this.repository = repository;
         this.initialBalanceDAOImp = initialBalanceDAOImp;
@@ -119,7 +118,7 @@ public InventoryService(){}
         if (!denominationService.isExactChangeAvailable(change, denominationMap)) {
             throw new NoExactChangeException("No exact change available. Please provide the exact amount.");
         }
-
+//log denominationMap .....
         denominationMap.forEach((denomination, count) -> {
             if (count > 0) {
                 log.info(denomination + " Rupees: " + count + " notes/coins");
